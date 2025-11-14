@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import assests from "../assets/assests";
 
-
-
 export default function Navbar({ onNav, route }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
-  
+
   // Dynamic background: transparent -> solid with blur on scroll
   const navbarBg = useTransform(
     scrollY,
@@ -26,9 +24,7 @@ export default function Navbar({ onNav, route }) {
 
   const linkClass = (r) =>
     `relative px-4 py-2 text-sm font-semibold transition-all duration-300 ${
-      route === r 
-        ? "text-red-500" 
-        : "text-gray-200 hover:text-white"
+      route === r ? "text-red-500" : "text-gray-200 hover:text-white"
     }`;
 
   const navItems = ["home", "about", "services", "gallery", "contact"];
@@ -38,15 +34,14 @@ export default function Navbar({ onNav, route }) {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      style={{ backgroundColor: navbarBg }}
+      style={{ backgroundColor: open ? "rgba(0, 0, 0, 1)" : navbarBg }}
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled 
-          ? "backdrop-blur-xl border-b border-white/20 shadow-2xl shadow-black/50" 
+        open || scrolled
+          ? "backdrop-blur-xl border-b border-white/20 shadow-2xl shadow-black/50"
           : "border-b border-white/0"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 md:py-4">
-
         {/* LOGO */}
         <motion.div
           onClick={() => {
@@ -107,8 +102,8 @@ export default function Navbar({ onNav, route }) {
         <motion.button
           onClick={() => onNav("contact")}
           className="hidden md:flex items-center gap-2 relative px-5 py-2.5 bg-gradient-to-r from-red-600 via-red-600 to-red-700 font-bold text-white text-sm rounded-lg overflow-hidden group shadow-lg shadow-red-600/30"
-          whileHover={{ 
-            scale: 1.05, 
+          whileHover={{
+            scale: 1.05,
             boxShadow: "0 0 30px rgba(220, 38, 38, 0.6)",
           }}
           whileTap={{ scale: 0.98 }}
@@ -117,7 +112,7 @@ export default function Navbar({ onNav, route }) {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <span className="relative z-10 tracking-wide">Connect With Us</span>
-          <motion.span 
+          <motion.span
             className="relative z-10"
             animate={{ x: [0, 3, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -170,7 +165,7 @@ export default function Navbar({ onNav, route }) {
             className="fixed inset-0 bg-black/70 backdrop-blur-md z-40 md:hidden"
             onClick={() => setOpen(false)}
           />
-          
+
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -180,23 +175,29 @@ export default function Navbar({ onNav, route }) {
           >
             {/* Mobile menu header decoration */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-red-500 to-red-600"></div>
-            
+
             <nav className="flex flex-col px-6 py-24 gap-2">
               {navItems.map((item, i) => (
                 <motion.button
                   key={item}
-                  className={`${linkClass(item)} text-left rounded-lg py-3 px-4`}
+                  className={`${linkClass(
+                    item
+                  )} text-left rounded-lg py-3 px-4`}
                   onClick={() => {
                     onNav(item);
                     setOpen(false);
                   }}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ 
-                    x: 8, 
+                  transition={{
+                    delay: 0.05 * i,
+                    duration: 0.3,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  whileHover={{
+                    x: 8,
                     backgroundColor: "rgba(220, 38, 38, 0.15)",
-                    borderLeft: "3px solid rgb(220, 38, 38)"
+                    borderLeft: "3px solid rgb(220, 38, 38)",
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -215,7 +216,10 @@ export default function Navbar({ onNav, route }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.3 }}
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(220, 38, 38, 0.5)" }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 10px 30px rgba(220, 38, 38, 0.5)",
+                }}
                 whileTap={{ scale: 0.95 }}
               >
                 <span>Connect With Us</span>
