@@ -353,7 +353,7 @@ export default function Navbar({ onNav, route }) {
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
             className="
               fixed right-0 
-              top-[70px] bottom-[380px]
+              top-[72px] bottom-[380px]
               w-[280px] sm:w-[320px] 
               z-[1500] 
               bg-black/60 
