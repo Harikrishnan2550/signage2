@@ -21,7 +21,6 @@ export default function Gallery() {
     "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
     "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
     "https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800&q=80",
     "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",

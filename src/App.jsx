@@ -12,6 +12,8 @@ import ContactUsPage from "./components/ContactUsPage";
 import GalleryPage from "./components/GalleryPage";
 import ServicesPage from "./components/ServicesPage";
 
+import WhatsAppButton from "./components/WhatsAppButton"; // <-- ⭐ ADD THIS
+
 function App() {
   const [route, setRoute] = useState("home");
 
@@ -24,7 +26,7 @@ function App() {
         <>
           <Home onNav={setRoute} />
           <About />
-          <Services />
+          <Services onNav={setRoute}/>
           <Gallery />
           <ConnectUs />
           <Footer />
@@ -42,7 +44,7 @@ function App() {
       {/* SERVICES PAGE */}
       {route === "services" && (
         <>
-          <ServicesPage />
+          <ServicesPage/>
           <Footer />
         </>
       )}
@@ -62,6 +64,8 @@ function App() {
           <Footer />
         </>
       )}
+
+      <WhatsAppButton phone="918714302550"/>  
     </div>
   );
 }

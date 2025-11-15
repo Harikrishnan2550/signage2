@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-black text-gray-300 pt-16 pb-10 px-6 md:px-16 border-t border-white/10">
+    <footer className="relative w-full bg-black text-gray-300 pt-8 pb-10 px-6 md:px-16 border-t border-white/10">
 
       {/* Top Orange Accent Line */}
       <div className="absolute top-0 left-0 w-full h-[2px] bg-[#f58020]/60"></div>

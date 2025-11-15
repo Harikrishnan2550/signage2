@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Lightbulb, Box, Palette, Zap, Building2, MapPin, ArrowRight, Sparkles } from "lucide-react";
+import { Box, Palette,Building2 } from "lucide-react";
 import { useRef } from "react";
 
-export default function Services() {
+export default function Services({ onNav }) {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -12,49 +12,30 @@ export default function Services() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
 
+  /* ================= SHOW ONLY 3 SERVICES ================= */
   const serviceList = [
-    {
-      title: "LED Sign Boards",
-      desc: "High-brightness LED signage for indoor and outdoor branding with energy-efficient solutions.",
-      icon: Lightbulb,
-      gradient: "from-yellow-500 to-orange-600",
-      glow: "yellow-500",
-    },
-    {
-      title: "Acrylic 3D Letters",
-      desc: "Premium acrylic, metal and illuminated 3D letter solutions that add depth to your brand.",
-      icon: Box,
-      gradient: "from-blue-500 to-cyan-600",
-      glow: "blue-500",
-    },
-    {
-      title: "Vinyl Printing",
-      desc: "High-resolution vinyl printing for retail and corporate needs with vibrant colors.",
-      icon: Palette,
-      gradient: "from-purple-500 to-pink-600",
-      glow: "purple-500",
-    },
-    {
-      title: "Glow Sign Boards",
-      desc: "Eye-catching illuminated signage to boost your brand visibility day and night.",
-      icon: Zap,
-      gradient: "from-[#f58020] to-[#d4550d]",
-      glow: "[#f58020]",
-    },
-    {
-      title: "Branding Boards",
-      desc: "Custom branding boards for shops, offices, and commercial spaces that make statements.",
+     {
+      title: "Frontage Signages",
+      desc: "Premium outdoor storefront signage that enhances brand visibility and creates a powerful first impression.",
       icon: Building2,
-      gradient: "from-green-500 to-emerald-600",
-      glow: "green-500",
+      gradient: "from-[#f58020] to-[#d4550d]",
+      glow: "[#f58020]"
     },
     {
-      title: "Wayfinding Signage",
-      desc: "Directional & internal signage for malls, showrooms and buildings with clear navigation.",
-      icon: MapPin,
-      gradient: "from-indigo-500 to-violet-600",
-      glow: "indigo-500",
+      title: "Interior Signages",
+      desc: "Elegant and modern indoor signage solutions crafted to elevate commercial interiors and retail brand identity.",
+      icon: Palette,
+      gradient: "from-[#f58020] to-[#d4550d]",
+      glow: "[#f58020]"
     },
+    {
+      title: "Wall & Glass Branding",
+      desc: "High-quality vinyl prints, frosting, and branding solutions designed for office walls and glass partitions.",
+      icon: Box,
+      gradient: "from-[#f58020] to-[#d4550d]",
+      glow: "[#f58020]"
+    },
+  
   ];
 
   return (
@@ -127,7 +108,7 @@ export default function Services() {
           High-quality signage and branding solutions crafted with precision and innovation.
         </motion.p>
 
-        {/* Service Grid */}
+        {/* ================= SERVICE GRID (ONLY 3 ITEMS) ================= */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceList.map((service, index) => {
             const Icon = service.icon;
@@ -152,20 +133,6 @@ export default function Services() {
                     className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 blur-2xl transition`}
                   />
 
-                  {/* Particle Glow */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition">
-                    <motion.div
-                      animate={{ y: [0, -20, 0], opacity: [0, 1, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className={`absolute top-1/4 left-1/4 w-2 h-2 bg-${service.glow} rounded-full blur-sm`}
-                    />
-                    <motion.div
-                      animate={{ y: [0, -30, 0], opacity: [0, 1, 0] }}
-                      transition={{ duration: 2.5, repeat: Infinity }}
-                      className={`absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-${service.glow} rounded-full blur-sm`}
-                    />
-                  </div>
-
                   {/* Icon Block */}
                   <motion.div
                     whileHover={{ scale: 1.1 }}
@@ -184,15 +151,6 @@ export default function Services() {
                     <p className="text-gray-400 text-sm leading-relaxed mb-6">
                       {service.desc}
                     </p>
-
-                    {/* Learn More */}
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      className="flex items-center gap-2 text-[#f58020] font-semibold text-sm"
-                    >
-                      <span>Learn More</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.div>
                   </div>
 
                   {/* Hover Bottom Border */}
@@ -207,13 +165,14 @@ export default function Services() {
           })}
         </div>
 
-        {/* CTA Button */}
+        {/* ================ VIEW ALL SERVICES BUTTON ================ */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="mt-20 text-center"
         >
           <motion.button
+            onClick={() => onNav("services")}
             whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(245,128,32,0.4)" }}
             className="group relative px-8 py-4 bg-gradient-to-r from-[#f58020] to-[#d4550d] text-white font-bold text-sm rounded-xl shadow-xl overflow-hidden"
           >
@@ -238,3 +197,4 @@ export default function Services() {
     </motion.section>
   );
 }
+
