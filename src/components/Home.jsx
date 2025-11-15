@@ -35,31 +35,20 @@ export default function Home({ onNav }) {
 
       {/* CONTENT */}
       <motion.div 
-        className="relative z-10 h-screen flex flex-col justify-center max-w-6xl mx-auto px-8 sm:px-8 lg:px-0"
-
+        className="relative z-10 h-screen flex flex-col justify-center max-w-6xl mx-auto px-10 sm:px-8 lg:px-0 lg:ml-[160px]"
         style={{ opacity }}
       >
-
-        {/* BADGE */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6"
-        >
-          
-        </motion.div>
 
         {/* HEADING */}
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-tight mt-24"
+          className="text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-tight mt-24 "
         >
           <span className="inline-block">Premium</span>{" "}
           <motion.span 
-            className="inline-block bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent"
+            className="inline-block bg-gradient-to-r from-[#f58020] via-red-700 to-red-700 bg-clip-text text-transparent leading-snug"
             animate={{ 
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
@@ -94,10 +83,12 @@ export default function Home({ onNav }) {
           transition={{ delay: 0.7, duration: 0.6 }}
           className="mt-10 flex flex-wrap gap-4"
         >
+          
+          {/* PRIMARY BUTTON */}
           <motion.button 
             onClick={() => onNav("contact")}
-            className="group relative px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold text-sm rounded-lg overflow-hidden shadow-2xl"
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(220, 38, 38, 0.4)" }}
+            className="group relative px-8 py-4 bg-gradient-to-r from-[#f58020] to-red-700 text-white font-bold text-sm rounded-lg overflow-hidden shadow-2xl"
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(245,128,32,0.4)" }}
             whileTap={{ scale: 0.98 }}
           >
             <span className="relative z-10 flex items-center gap-2">
@@ -110,17 +101,18 @@ export default function Home({ onNav }) {
               </motion.span>
             </span>
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
+              className="absolute inset-0 bg-gradient-to-r from-red-700 to-[#f58020]"
               initial={{ x: "-100%" }}
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
             />
           </motion.button>
 
+          {/* SECONDARY BUTTON */}
           <motion.button 
             onClick={() => onNav("gallery")}
-            className="group px-8 py-4 border-2 border-gray-600 text-gray-300 hover:border-red-500 hover:text-white font-semibold text-sm rounded-lg backdrop-blur-sm transition-all duration-300"
-            whileHover={{ scale: 1.05, backgroundColor: "rgba(220, 38, 38, 0.1)" }}
+            className="group px-8 py-4 border-2 border-gray-600 text-gray-300 hover:border-[#f58020] hover:text-white font-semibold text-sm rounded-lg backdrop-blur-sm transition-all duration-300"
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(245,128,32,0.1)" }}
             whileTap={{ scale: 0.98 }}
           >
             View Portfolio
@@ -135,7 +127,7 @@ export default function Home({ onNav }) {
           </motion.button>
         </motion.div>
 
-        {/* STATS */}
+        {/* STATS (if needed later) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,7 +150,7 @@ export default function Home({ onNav }) {
         <motion.div
           animate={{ y: [0, 12, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-          className="w-[2px] h-10 bg-gradient-to-b from-red-600 to-transparent rounded-full"
+          className="w-[2px] h-10 bg-gradient-to-b from-[#f58020] to-transparent rounded-full"
         />
       </motion.div>
     </section>

@@ -4,12 +4,12 @@ export default function Footer() {
   return (
     <footer className="relative w-full bg-black text-gray-300 pt-16 pb-10 px-6 md:px-16 border-t border-white/10">
 
-      {/* Top Red Accent Line */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-red-600/60"></div>
+      {/* Top Orange Accent Line */}
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-[#f58020]/60"></div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
 
-        {/* --- BRAND --- */}
+        {/* BRAND */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -17,12 +17,12 @@ export default function Footer() {
         >
           <h2 className="text-white text-xl font-bold">Design Phantom</h2>
           <p className="text-gray-400 mt-3 leading-relaxed">
-            Premium signage company delivering high-quality boards,
-            3D letters, LED signage & branding solutions.
+            Premium signage company delivering high-quality LED boards,
+            3D letters, vinyl printing & branding solutions.
           </p>
         </motion.div>
 
-        {/* --- QUICK LINKS --- */}
+        {/* QUICK LINKS */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,9 +33,9 @@ export default function Footer() {
             {["Home", "About", "Services", "Gallery", "Contact"].map((item, i) => (
               <motion.li
                 key={i}
-                whileHover={{ x: 6, color: "#dc2626" }}
+                whileHover={{ x: 6, color: "#f58020" }}
                 transition={{ duration: 0.2 }}
-                className="cursor-pointer text-gray-400 hover:text-red-600"
+                className="cursor-pointer text-gray-400 hover:text-[#f58020]"
               >
                 {item}
               </motion.li>
@@ -43,7 +43,7 @@ export default function Footer() {
           </ul>
         </motion.div>
 
-        {/* --- CONTACT --- */}
+        {/* CONTACT INFO */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function Footer() {
           </ul>
         </motion.div>
 
-        {/* --- SOCIALS --- */}
+        {/* SOCIAL LINKS */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function Footer() {
             {["Instagram", "Facebook", "LinkedIn"].map((item, i) => (
               <motion.span
                 key={i}
-                whileHover={{ y: -4, scale: 1.1, color: "#dc2626" }}
+                whileHover={{ y: -4, scale: 1.1, color: "#f58020" }}
                 transition={{ duration: 0.2 }}
                 className="cursor-pointer"
               >
@@ -89,7 +89,7 @@ export default function Footer() {
         transition={{ duration: 0.6 }}
         className="text-center text-gray-500 text-sm"
       >
-        © {new Date().getFullYear()} Winshine Infotech — All Rights Reserved.
+        © {new Date().getFullYear()} Design Phantom — All Rights Reserved.
       </motion.div>
 
       {/* Bottom Fade */}

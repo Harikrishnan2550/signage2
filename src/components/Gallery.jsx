@@ -52,157 +52,142 @@ export default function Gallery() {
       style={{ opacity, y }}
       className="relative w-full bg-black text-gray-300 py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Animated Background Grid */}
+      {/* Background Grid */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="h-full w-full bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
       </div>
 
-      {/* Radial Gradients */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-3xl"></div>
+      {/* Radial Glows */}
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-[#f58020]/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[#d4550d]/5 rounded-full blur-3xl"></div>
 
       {/* Top Accent Line */}
       <motion.div 
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent origin-left"
+        className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f58020] to-transparent origin-left"
       ></motion.div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Badge */}
+
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
           className="flex justify-center mb-6"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-500/30 rounded-full text-red-400 text-xs font-semibold backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#f58020]/10 border border-[#f58020]/30 rounded-full text-[#f58020] text-xs font-semibold backdrop-blur-sm">
             <Sparkles className="w-3 h-3" />
             Our Work Showcase
           </span>
         </motion.div>
 
-        {/* HEADING */}
+        {/* Heading */}
         <div className="text-center mb-4">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true, margin: "-100px" }}
             className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight"
           >
             Project{" "}
             <motion.span 
-              className="inline-block bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent"
-              animate={{ 
+              className="inline-block bg-gradient-to-r from-[#f58020] via-[#d4550d] to-[#d4550d] bg-clip-text text-transparent"
+              animate={{
                 backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 5, repeat: Infinity }}
               style={{ backgroundSize: "200% 200%" }}
             >
               Gallery
             </motion.span>
           </motion.h2>
+
+          {/* Accent underline */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="mt-4 h-1 w-32 bg-gradient-to-r from-red-600 via-red-500 to-red-400 rounded-full mx-auto"
+            className="mt-4 h-1 w-32 bg-gradient-to-r from-[#f58020] via-[#d4550d] to-[#f58020] rounded-full mx-auto"
           ></motion.div>
         </div>
 
+        {/* Description */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true, margin: "-100px" }}
           className="text-gray-400 text-center text-base sm:text-lg mt-4 max-w-2xl mx-auto leading-relaxed"
         >
           Explore our portfolio of premium signage works that transform spaces and elevate brand identities.
         </motion.p>
 
-        {/* GALLERY GRID */}
+        {/* Gallery Grid */}
         <div className="mt-12 md:mt-16 lg:mt-20 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {images.map((img, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.08,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.08 }}
               className="group relative"
             >
-              {/* Card with hover effects */}
               <motion.div
                 whileHover={{ y: -8 }}
                 className="relative cursor-pointer rounded-2xl overflow-hidden border border-white/10 shadow-xl h-64 md:h-72"
                 onClick={() => openLightbox(img, index)}
               >
-                {/* Gradient Border on Hover */}
-                <div className="absolute -inset-[1px] bg-gradient-to-br from-red-500/50 via-purple-500/50 to-red-500/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
+                {/* Hover Border */}
+                <div className="absolute -inset-[1px] bg-gradient-to-br from-[#f58020]/40 via-[#d4550d]/40 to-[#f58020]/40 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 blur-sm"></div>
 
-                {/* Inner Container */}
-                <div className="relative h-full bg-black rounded-2xl overflow-hidden">
-                  
-                  {/* Glow Effect on Hover */}
+                {/* Glow Hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-[#f58020]/25 via-[#d4550d]/20 to-[#f58020]/25 opacity-0 group-hover:opacity-100 blur-2xl transition duration-500 z-10"
+                ></motion.div>
+
+                {/* Image */}
+                <motion.img
+                  src={img}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
+                />
+
+                {/* Dark Overlay & Zoom Icon */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center z-20"
+                >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-red-600/30 via-purple-600/20 to-red-600/30 opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500 z-10"
-                  ></motion.div>
-
-                  {/* Image */}
-                  <motion.img
-                    src={img}
-                    alt={`gallery-${index}`}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                  />
-
-                  {/* Overlay with Zoom Icon */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center z-20"
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileHover={{ scale: 1, rotate: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20"
                   >
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      whileHover={{ scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20"
-                    >
-                      <ZoomIn className="w-8 h-8 text-white" />
-                    </motion.div>
+                    <ZoomIn className="w-8 h-8 text-white" />
                   </motion.div>
+                </motion.div>
 
-                  {/* Shine Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent z-30"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.8 }}
-                  ></motion.div>
+                {/* Shine */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent z-30"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.8 }}
+                ></motion.div>
 
-                  {/* Bottom Accent Bar */}
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-red-600 to-red-400 origin-left z-30"
-                  ></motion.div>
+                {/* Bottom Accent */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#f58020] to-[#d4550d] origin-left z-30"
+                ></motion.div>
 
-                  {/* Corner Number */}
-                  <div className="absolute top-3 right-3 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/10 z-30">
-                    <span className="text-white text-xs font-bold">{index + 1}</span>
-                  </div>
+                {/* Number Tag */}
+                <div className="absolute top-3 right-3 w-8 h-8 bg-black/60 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/10 z-30">
+                  <span className="text-white text-xs font-bold">{index + 1}</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -210,7 +195,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* ENHANCED LIGHTBOX */}
+      {/* LIGHTBOX */}
       <AnimatePresence>
         {selected && (
           <motion.div
@@ -222,13 +207,13 @@ export default function Gallery() {
           >
             {/* Close Button */}
             <motion.button
+              onClick={() => setSelected(null)}
+              className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-[#f58020]/80 transition-colors z-50"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setSelected(null)}
-              className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-red-600/80 transition-colors z-50"
             >
               <X className="w-6 h-6 text-white" />
             </motion.button>
@@ -245,56 +230,56 @@ export default function Gallery() {
               </span>
             </motion.div>
 
-            {/* Previous Button */}
+            {/* Prev */}
             <motion.button
+              onClick={prevImage}
+              className="absolute left-6 w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all z-50"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               whileHover={{ scale: 1.1, x: -5 }}
               whileTap={{ scale: 0.9 }}
-              onClick={prevImage}
-              className="absolute left-6 w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all z-50"
             >
               <ChevronLeft className="w-8 h-8 text-white" />
             </motion.button>
 
-            {/* Next Button */}
+            {/* Next */}
             <motion.button
+              onClick={nextImage}
+              className="absolute right-6 w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all z-50"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               whileHover={{ scale: 1.1, x: 5 }}
               whileTap={{ scale: 0.9 }}
-              onClick={nextImage}
-              className="absolute right-6 w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all z-50"
             >
               <ChevronRight className="w-8 h-8 text-white" />
             </motion.button>
 
-            {/* Image Container */}
+            {/* Lightbox Image */}
             <motion.div
               initial={{ scale: 0.7, rotateY: 90 }}
               animate={{ scale: 1, rotateY: 0 }}
               exit={{ scale: 0.7, rotateY: -90 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5 }}
               className="relative max-w-6xl w-full"
             >
-              {/* Glow Behind Image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-red-600/30 via-purple-600/30 to-red-600/30 blur-3xl"></div>
-              
-              {/* Image */}
+              {/* orange glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#f58020]/30 via-[#d4550d]/20 to-[#f58020]/30 blur-3xl"></div>
+
               <img
                 src={selected}
-                alt="full view"
+                alt=""
                 className="relative w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/20"
                 onClick={(e) => e.stopPropagation()}
               />
             </motion.div>
+
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Bottom Gradient Fade */}
+      {/* Bottom Fade */}
       <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
     </motion.section>
   );

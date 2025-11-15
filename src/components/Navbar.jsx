@@ -201,7 +201,7 @@ export default function Navbar({ onNav, route }) {
 
   const { scrollY, scrollYProgress } = useScroll();
 
-  // SCROLL PROGRESS BAR
+  // Scroll progress bar
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   // Detect mobile screen
@@ -212,16 +212,12 @@ export default function Navbar({ onNav, route }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Scroll background animation
-  const navbarBg = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(0,0,0,0)", "rgba(0,0,0,0.35)"]
-  );
-
-  // Detect scroll
+  // Detect scroll amount for desktop blur
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      // If scroll > 80px → blur should appear on desktop
+      setScrolled(window.scrollY > 80);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -230,7 +226,7 @@ export default function Navbar({ onNav, route }) {
 
   const linkClass = (r) =>
     `relative px-4 py-2 text-sm font-semibold transition-all duration-300 ${
-      route === r ? "text-red-500" : "text-gray-200 hover:text-white"
+      route === r ? "text-[#f58020]" : "text-gray-200 hover:text-white"
     }`;
 
   return (
@@ -240,14 +236,33 @@ export default function Navbar({ onNav, route }) {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* 🔥 ACTIVE SCROLL INDICATOR */}
+      {/* SCROLL INDICATOR */}
       <motion.div
         style={{ scaleX }}
-        className="origin-left fixed top-0 left-0 right-0 h-[3px] bg-red-600 z-[2000]"
+        className="origin-left fixed top-0 left-0 right-0 h-[3px] bg-[#f58020] z-[2000]"
       />
 
-      {/* 🔥 MOBILE ONLY BLUR LAYER */}
-      {isMobile && (
+      {/* ░░░ BACKGROUND LAYER (MOBILE + DESKTOP LOGIC SEPARATE) ░░░ */}
+      {!isMobile ? (
+        // DESKTOP: Blur only AFTER Hero Section
+        <motion.div
+          className="absolute inset-0 pointer-events-none transition-all duration-500"
+          style={{
+            background: scrolled
+              ? "rgba(0,0,0,0.45)"
+              : "rgba(0,0,0,0)", // Home section = no blur
+            backdropFilter: scrolled ? "blur(18px) saturate(180%)" : "none",
+            WebkitBackdropFilter: scrolled
+              ? "blur(18px) saturate(180%)"
+              : "none",
+            borderBottom: scrolled
+              ? "1px solid rgba(255,255,255,0.15)"
+              : "transparent",
+            zIndex: 0,
+          }}
+        />
+      ) : (
+        // MOBILE: Always follow your original logic
         <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -255,7 +270,7 @@ export default function Navbar({ onNav, route }) {
               ? "rgba(255,255,255,0.06)"
               : scrolled
               ? "rgba(0,0,0,0.3)"
-              : navbarBg,
+              : "rgba(0,0,0,0)",
             backdropFilter: "blur(18px) saturate(180%)",
             WebkitBackdropFilter: "blur(18px) saturate(180%)",
             borderBottom: "1px solid rgba(255,255,255,0.15)",
@@ -264,7 +279,7 @@ export default function Navbar({ onNav, route }) {
         />
       )}
 
-      {/* MAIN NAVIGATION CONTENT */}
+      {/* MAIN NAV BAR */}
       <div className="relative z-[1000]">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-4 py-3 md:py-4">
 
@@ -281,11 +296,11 @@ export default function Navbar({ onNav, route }) {
             <img
               src={assests.logo}
               alt="Logo"
-              className="w-[180px] sm:w-[220px] md:w-[235px] h-12 sm:h-14 md:h-16 object-cover rounded-xl ring-2 ring-white/10"
+              className="w-[180px] sm:w-[220px] md:w-[235px] h-12 sm:h-14 md:h-16 object-cover rounded-xl"
             />
           </motion.div>
 
-          {/* DESKTOP NAVBAR */}
+          {/* DESKTOP NAV */}
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item, i) => (
               <motion.button
@@ -305,7 +320,7 @@ export default function Navbar({ onNav, route }) {
                 {route === item && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-red-600/10 rounded-lg border border-red-500/40 shadow-red-500/20"
+                    className="absolute inset-0 bg-[#f58020]/10 rounded-lg border border-[#f58020]/40 shadow-[#f58020]/20"
                     transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                   />
                 )}
@@ -313,10 +328,10 @@ export default function Navbar({ onNav, route }) {
             ))}
           </nav>
 
-          {/* DESKTOP CTA BUTTON */}
+          {/* DESKTOP CTA */}
           <motion.button
             onClick={() => onNav("contact")}
-            className="hidden md:flex px-5 py-2.5 bg-red-600 text-white rounded-lg font-semibold shadow-red-600/40"
+            className="hidden md:flex px-5 py-2.5 bg-gradient-to-r from-[#f58020] to-red-700 text-white rounded-lg font-semibold shadow-[#f58020]/40"
             whileHover={{ scale: 1.05 }}
           >
             Connect →
@@ -345,7 +360,7 @@ export default function Navbar({ onNav, route }) {
           </motion.button>
         </div>
 
-        {/* MOBILE SLIDE DRAWER (REDUCED HEIGHT) */}
+        {/* MOBILE DRAWER */}
         {open && (
           <motion.div
             initial={{ x: "100%" }}
@@ -359,14 +374,15 @@ export default function Navbar({ onNav, route }) {
               bg-black/60 
               backdrop-blur-2xl 
               border-l border-white/20 
-              p-8 pt-16 
+              p-8 
               rounded-xl
+              flex flex-col items-center justify-center gap-4
             "
           >
             {navItems.map((item, i) => (
               <motion.button
                 key={item}
-                className="text-left text-gray-200 hover:text-white text-lg font-medium py-3 w-full"
+                className="text-center text-gray-200 hover:text-white text-lg font-medium py-3 w-full"
                 onClick={() => {
                   onNav(item);
                   setOpen(false);
@@ -384,7 +400,7 @@ export default function Navbar({ onNav, route }) {
                 onNav("contact");
                 setOpen(false);
               }}
-              className="mt-10 w-full py-3 bg-red-600 rounded-lg text-white font-semibold"
+              className="mt-10 w-full py-3 bg-gradient-to-r from-[#f58020] to-red-700 rounded-lg text-white font-semibold"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
@@ -398,4 +414,3 @@ export default function Navbar({ onNav, route }) {
     </motion.header>
   );
 }
-
