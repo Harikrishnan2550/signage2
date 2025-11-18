@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Box, Palette,Building2 } from "lucide-react";
+import { Box, Palette,Building2,Sparkles,ArrowRight } from "lucide-react";
 import { useRef } from "react";
 
 export default function Services({ onNav }) {
