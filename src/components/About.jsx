@@ -14,10 +14,10 @@ export default function About() {
   const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
 
   const features = [
-    "End-to-end service — design, printing & installation",
-    "High-grade materials and long-lasting finish",
-    "Custom signage for all industries",
-    "On-time delivery and professional installation",
+    "End-to-end solutions — design, fabrication & installation",
+    "High-grade materials with long-lasting durability",
+    "Custom signage for all industries & business sizes",
+    "On-time delivery with professional installation support",
   ];
 
   const stats = [
@@ -131,7 +131,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1]">
+            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] leading-snug">
               About{" "}
               <motion.span
                 className="inline-block bg-gradient-to-r from-[#f58020] via-[#d4550d] to-[#d4550d] bg-clip-text text-transparent"
@@ -141,7 +141,7 @@ export default function About() {
                 transition={{ duration: 5, repeat: Infinity }}
                 style={{ backgroundSize: "200% 200%" }}
               >
-                Design Phantom
+                Next Level Signages
               </motion.span>
             </h2>
           </motion.div>
@@ -152,9 +152,11 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="text-gray-300 text-base sm:text-lg leading-relaxed"
           >
-            We are a premium signage company delivering high-quality designs for
-            brands, retail chains and businesses. From LED boards to 3D letters
-            — we create signage that stands out and lasts.
+            We are a Kochi-based premium signage and branding company delivering
+            high-quality, performance-driven solutions for businesses, retail
+            chains, showrooms, corporates, and institutions. From LED boards to
+            3D acrylic letters , we craft signage that enhances brand identity
+            and makes a lasting impression.
           </motion.p>
 
           {/* FEATURES */}
@@ -283,7 +285,6 @@ export default function About() {
                         <p className="text-gray-200 text-[18px] md:text-[20px] leading-relaxed italic font-light">
                           “{quote}”
                         </p>
-
                       </motion.div>
                     ))}
                   </div>

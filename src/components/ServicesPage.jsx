@@ -29,36 +29,36 @@ export default function ServicesPage() {
   /* ⭐ UPDATED CLIENT SERVICES */
   const serviceList = [
     {
-      title: "Frontage Signages",
-      desc: "Premium outdoor storefront signage that enhances brand visibility and creates a powerful first impression.",
+      title: "Frontage Sign Boards",
+      desc: "Frontage Sign Boards show off your business. They draw in customers. We make outdoor signs that last and look great day and night.Our signs make your business stand out in Kochi.",
       icon: Building2,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"
     },
-    {
-      title: "Interior Signages",
-      desc: "Elegant and modern indoor signage solutions crafted to elevate commercial interiors and retail brand identity.",
+   {
+      title: "Interior Branding & Signages",
+      desc: "Interior Signage makes your office look good. We make signs that are clean and modern. Our signs include logos and more.They make your space look great and leave a good impression.",
       icon: Palette,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"
     },
-    {
-      title: "Wall & Glass Branding",
-      desc: "High-quality vinyl prints, frosting, and branding solutions designed for office walls and glass partitions.",
+   {
+      title: "Wall Graphics & Glass Branding",
+      desc: "Wall and Glass Branding makes your space better. We make prints and stickers that look great. They are perfect for many places in Kochi.They make your space look better and show off your brand.",
       icon: Box,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"
     },
     {
-      title: "Directional Signages",
-      desc: "Navigation & wayfinding signages for malls, offices, showrooms, institutes, and large commercial spaces.",
+      title: "Directional & Wayfinding Signage",
+      desc: "Directional Signages help people find their way. We make signs that are easy to read. They are great for malls and more.Our signs help people move around easily.",
       icon: MapPin,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"
     },
     {
-      title: "Laser & CNC Cutting",
-      desc: "Precision laser and CNC cutting for acrylic, ACP, MDF, metal, and other materials with smooth finishing.",
+      title: "Laser Cutting & CNC Fabrication",
+      desc: "Our Laser & CNC Cutting services are precise. We cut many materials for signs and more. We make custom shapes and letters.Our tech and skill make sure our work is top-notch.",
       icon: Zap,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"

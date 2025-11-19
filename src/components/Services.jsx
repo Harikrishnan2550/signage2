@@ -15,22 +15,22 @@ export default function Services({ onNav }) {
   /* ================= SHOW ONLY 3 SERVICES ================= */
   const serviceList = [
      {
-      title: "Frontage Signages",
-      desc: "Premium outdoor storefront signage that enhances brand visibility and creates a powerful first impression.",
+      title: "Frontage Sign Boards",
+      desc: "Frontage Sign Boards show off your business. They draw in customers. We make outdoor signs that last and look great day and night.Our signs make your business stand out in Kochi.",
       icon: Building2,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"
     },
     {
-      title: "Interior Signages",
-      desc: "Elegant and modern indoor signage solutions crafted to elevate commercial interiors and retail brand identity.",
+      title: "Interior Branding & Signages",
+      desc: "Interior Signage makes your office look good. We make signs that are clean and modern. Our signs include logos and more.They make your space look great and leave a good impression.",
       icon: Palette,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"
     },
     {
-      title: "Wall & Glass Branding",
-      desc: "High-quality vinyl prints, frosting, and branding solutions designed for office walls and glass partitions.",
+      title: "Wall Graphics & Glass Branding",
+      desc: "Wall and Glass Branding makes your space better. We make prints and stickers that look great. They are perfect for many places in Kochi.They make your space look better and show off your brand.",
       icon: Box,
       gradient: "from-[#f58020] to-[#d4550d]",
       glow: "[#f58020]"
@@ -105,7 +105,7 @@ export default function Services({ onNav }) {
           whileInView={{ opacity: 1 }}
           className="text-gray-400 text-center mt-4 max-w-3xl mx-auto"
         >
-          High-quality signage and branding solutions crafted with precision and innovation.
+          We make top-notch signs and branding. We use the latest tech. Our signs are for all kinds of places in Kochi.
         </motion.p>
 
         {/* ================= SERVICE GRID (ONLY 3 ITEMS) ================= */}

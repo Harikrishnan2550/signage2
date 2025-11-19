@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Toaster, toast } from "sonner";
 
 export default function ConnectUs() {
   const sectionRef = useRef(null);
@@ -30,18 +31,22 @@ export default function ConnectUs() {
 
     emailjs
       .sendForm(
-        "service_a7bvb6d",     // your service ID
-        "template_wx9e8jt",    // your template ID
+        "service_a7bvb6d", // your service ID
+        "template_wx9e8jt", // your template ID
         formRef.current,
-        "L8a-1dhEPat8PUQN8"    // your public key
+        "L8a-1dhEPat8PUQN8" // your public key
       )
       .then(() => {
-        alert("Message Sent Successfully!");
+        toast.success("Message Sent Successfully!", {
+          description: "We will contact you shortly.",
+        });
         setLoading(false);
         formRef.current.reset();
       })
       .catch(() => {
-        alert("Failed to send. Try again.");
+        toast.error("Failed to send. Try again.", {
+          description: "Please try again later.",
+        });
         setLoading(false);
       });
   };
@@ -52,6 +57,9 @@ export default function ConnectUs() {
       style={{ opacity, y }}
       className="relative w-full bg-black text-gray-300 py-24 px-6 md:px-16 overflow-hidden"
     >
+      {/* Sonner Toaster */}
+      <Toaster richColors closeButton />
+
       {/* BG GRID */}
       <div className="absolute inset-0 opacity-20">
         <div
@@ -95,7 +103,7 @@ export default function ConnectUs() {
           className="text-center mb-16"
         >
           <h2 className="text-white text-4xl md:text-6xl font-extrabold">
-            Connect with{" "}
+            Get in{" "}
             <motion.span
               className="text-[#f58020]"
               animate={{
@@ -107,12 +115,13 @@ export default function ConnectUs() {
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              Us
+              Touch
             </motion.span>
           </h2>
 
           <p className="text-gray-400 text-lg mt-6 max-w-2xl mx-auto">
-            We are here to help you with all signage needs. Reach out for a free quote.
+            Looking for the best signage company in Kochi?
+            We can help you make your brand look amazing.
           </p>
         </motion.div>
 
@@ -232,7 +241,7 @@ export default function ConnectUs() {
               <div className="space-y-8 relative z-10">
                 <div className="flex gap-4 items-start cursor-pointer">
                   <span className="text-[#f58020] text-2xl">📍</span>
-                  <p className="text-gray-400">123 Business Avenue, New Delhi</p>
+                  <p className="text-gray-400"> Kochi, Kerala</p>
                 </div>
 
                 <div className="flex gap-4 items-center cursor-pointer">

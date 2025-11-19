@@ -15,10 +15,9 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-white text-xl font-bold">Design Phantom</h2>
+          <h2 className="text-white text-xl font-bold">About Next Level Signages</h2>
           <p className="text-gray-400 mt-3 leading-relaxed">
-            Premium signage company delivering high-quality LED boards,
-            3D letters, vinyl printing & branding solutions.
+            We are a top signage and branding company in Kochi. We make high-quality signs for all kinds of businesses. We focus on great designs and lasting results to make your brand stand out.
           </p>
         </motion.div>
 
@@ -51,7 +50,7 @@ export default function Footer() {
         >
           <h3 className="text-white text-lg font-bold mb-4">Contact</h3>
           <ul className="space-y-4 text-gray-400">
-            <li>📍 New Delhi, India</li>
+            <li>📍 Kochi, Kerala</li>
             <li>📞 +91 98765 43210</li>
             <li>✉️ info@designphantom.com</li>
           </ul>
@@ -89,7 +88,7 @@ export default function Footer() {
         transition={{ duration: 0.6 }}
         className="text-center text-gray-500 text-sm"
       >
-        © {new Date().getFullYear()} Design Phantom — All Rights Reserved.
+        © {new Date().getFullYear()} Winshine infotech — All Rights Reserved.
       </motion.div>
 
       {/* Bottom Fade */}

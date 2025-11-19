@@ -21,10 +21,10 @@ export default function AboutUsPage() {
 
   /* ---------------- CONTENT DATA ---------------- */
   const features = [
-    "End-to-end service — design, printing & installation",
-    "High-grade materials and long-lasting finish",
-    "Custom signage for all industries",
-    "On-time delivery and professional installation",
+    "End-to-end solutions — design, fabrication & installation",
+    "High-grade materials with long-lasting durability",
+    "Custom signage for all industries & business sizes",
+    "On-time delivery with professional installation support",
   ];
 
   const stats = [
@@ -187,16 +187,26 @@ export default function AboutUsPage() {
             transition={{ duration: 0.8 }}
             className="space-y-6 md:space-y-8"
           >
-            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
+             <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] leading-snug">
               About{" "}
-              <span className="bg-gradient-to-r from-[#f58020] via-[#d4550d] to-red-700 bg-clip-text text-transparent">
-                Design Phantom
-              </span>
+              <motion.span
+                className="inline-block bg-gradient-to-r from-[#f58020] via-[#d4550d] to-[#d4550d] bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{ duration: 5, repeat: Infinity }}
+                style={{ backgroundSize: "200% 200%" }}
+              >
+                Next Level Signages
+              </motion.span>
             </h2>
 
             <p className="text-gray-300 text-lg leading-relaxed">
-              We deliver premium signage, branding, CNC/laser cutting, and illuminated boards across
-              various sectors with consistent quality, precision and trust.
+              We are a Kochi-based premium signage and branding company delivering
+            high-quality, performance-driven solutions for businesses, retail
+            chains, showrooms, corporates, and institutions. From LED boards to
+            3D acrylic letters , we craft signage that enhances brand identity
+            and makes a lasting impression.
             </p>
 
             {/* FEATURES */}
