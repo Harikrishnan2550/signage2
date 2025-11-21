@@ -8,10 +8,6 @@ import { TbTargetArrow } from "react-icons/tb";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { TiMessages } from "react-icons/ti";
 
-
-
-
-
 export default function ConnectUs() {
   const sectionRef = useRef(null);
   const formRef = useRef();
@@ -129,8 +125,8 @@ export default function ConnectUs() {
           </h2>
 
           <p className="text-gray-400 text-lg mt-6 max-w-2xl mx-auto">
-            Looking for the best signage company in Kochi?
-            We can help you make your brand look amazing.
+            Looking for the best signage company in Kochi? We can help you make
+            your brand look amazing.
           </p>
         </motion.div>
 
@@ -149,7 +145,9 @@ export default function ConnectUs() {
 
             <div className="relative bg-gradient-to-br from-[#0d0d0d] to-black p-8 rounded-2xl border border-[#f58020]/20 backdrop-blur-sm">
               <h3 className="text-white text-2xl font-bold mb-8 flex items-center gap-3">
-                <span className="text-[#f58020]"><TiMessages /></span>
+                <span className="text-[#f58020]">
+                  <TiMessages />
+                </span>
                 Send a Message
               </h3>
 
@@ -212,7 +210,10 @@ export default function ConnectUs() {
                 <motion.button
                   type="submit"
                   disabled={loading}
-                  whileHover={{ scale: 1.03, boxShadow: "0 10px 40px rgba(245,128,32,0.5)" }}
+                  whileHover={{
+                    scale: 1.03,
+                    boxShadow: "0 10px 40px rgba(245,128,32,0.5)",
+                  }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full py-4 bg-gradient-to-r from-[#f58020] to-[#d4550d] text-white font-bold rounded-xl shadow-xl relative overflow-hidden"
                 >
@@ -243,30 +244,58 @@ export default function ConnectUs() {
               className="relative bg-gradient-to-br from-[#0d0d0d] to-black p-8 rounded-2xl border border-[#f58020]/20 shadow-2xl"
             >
               <h3 className="text-white text-2xl font-bold mb-8 flex items-center gap-3 relative z-10">
-                <span className="text-[#f58020]"><TbTargetArrow /></span>
+                <span className="text-[#f58020]">
+                  <TbTargetArrow />
+                </span>
                 Reach Us
               </h3>
 
               <div className="space-y-8 relative z-10">
                 <div className="flex gap-4 items-start cursor-pointer">
-                  <span className="text-[#f58020] text-2xl"><IoLocationOutline /></span>
-                  <p className="text-gray-400"> Near Kinfra Techno Park & Kerala Startup Mission,<br></br>Kalamassery , Cochin  I  Kerala
-</p>
+                  <span className="text-[#f58020] text-2xl">
+                    <IoLocationOutline />
+                  </span>
+                  <p className="text-gray-400">
+                    {" "}
+                    Near Kinfra Techno Park & Kerala Startup Mission,<br></br>
+                    Kalamassery , Cochin I Kerala
+                  </p>
                 </div>
 
                 <div className="flex gap-4 items-center cursor-pointer">
-                  <span className="text-[#f58020] text-2xl"><IoCallOutline /></span>
-                  <p className="text-gray-400">+91 6238 139 465 | +91 9188 825 935</p>
+                  <span className="text-[#f58020] text-2xl">
+                    <IoCallOutline />
+                  </span>
+                  <p className="text-gray-400">
+                    +91 6238 139 465 | +91 9188 825 935
+                  </p>
                 </div>
 
                 <div className="flex gap-4 items-center cursor-pointer">
-                  <span className="text-[#f58020] text-2xl"><HiOutlineMailOpen /></span>
+                  <span className="text-[#f58020] text-2xl">
+                    <HiOutlineMailOpen />
+                  </span>
                   <p className="text-gray-400">info@nextlevelsignages.com</p>
                 </div>
 
-                <div className="w-full h-56 bg-gradient-to-br from-black to-[#0d0d0d] border border-[#f58020]/30 rounded-xl flex items-center justify-center text-gray-500 cursor-pointer">
-                  📍 View Map
+                {/* ⭐ GOOGLE MAP EMBED ⭐ */}
+                <div className="w-full h-56 rounded-xl overflow-hidden border border-[#f58020]/30 relative group">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251482.67686259636!2d76.16672441623326!3d9.982368232073966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6bf%3A0xbd582caa5844192!2sKochi%2C%20Kerala!5e0!3m2!1sen!2sin!4v1708600000000!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style={{border:0}} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    // Grayscale filter for premium look, full color on hover
+                    className="grayscale hover:grayscale-0 transition-all duration-700"
+                  ></iframe>
+                  
+                  {/* Optional: Hint overlay that disappears on hover */}
+                  <div className="absolute inset-0 bg-black/10 pointer-events-none group-hover:opacity-0 transition-opacity duration-500" />
                 </div>
+
               </div>
             </motion.div>
           </motion.div>

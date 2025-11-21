@@ -1,5 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Check, Award, Users, Clock } from "lucide-react";
+import {
+  Check,
+  Award,
+  Users,
+  Clock,
+  Hammer, // Added
+  Lightbulb, // Added
+  Heart, // Added
+  Leaf, // Added
+} from "lucide-react";
 import { useRef } from "react";
 import assests from "../assets/assests";
 
@@ -45,6 +54,30 @@ export default function About() {
         "Every signage we make carries your vision and our dedication. Let's keep building together.",
         "From Bold Ideas to Brilliant Signages..",
       ],
+    },
+  ];
+
+  // --- ADDED DATA FOR WHY CHOOSE US ---
+  const whyChooseData = [
+    {
+      title: "Craftsmanship & Quality",
+      desc: "At NEXT LEVEL Signages, we prioritize quality material and expert techniques to ensure durability and excellence in every sign.",
+      icon: Hammer,
+    },
+    {
+      title: "Innovation & Creativity",
+      desc: "We are not just making signages, we are creating visibility. We blend technology with design to make you stand out.",
+      icon: Lightbulb,
+    },
+    {
+      title: "Customer Satisfaction",
+      desc: "We highlight our commitment to meeting client needs with personalized designs & reliable services tailored to you.",
+      icon: Heart,
+    },
+    {
+      title: "Sustainability",
+      desc: "We are committed to eco-friendly practices by using sustainable materials and minimizing wastage during production.",
+      icon: Leaf,
     },
   ];
 
@@ -292,6 +325,61 @@ export default function About() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </motion.div>
+
+      {/* ---------------------------------------------------- */}
+      {/* ⭐ ADDED: WHY CHOOSE US SECTION */}
+      {/* ---------------------------------------------------- */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-7xl mx-auto mt-32 md:mt-40 mb-10"
+      >
+        <h3 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16">
+          Why Choose <span className="text-[#f58020]">NEXT LEVEL</span>{" "}
+          Signages?
+        </h3>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {whyChooseData.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
+                }}
+                className="group p-6 rounded-xl border border-white/10 bg-[#0a0a0a] hover:bg-[#111] hover:border-[#f58020]/40 transition-all duration-300 flex flex-col relative overflow-hidden"
+              >
+                <div className="mb-5 inline-block p-4 rounded-full bg-gradient-to-br from-gray-800 to-black border border-white/5 group-hover:border-[#f58020] group-hover:shadow-[0_0_20px_rgba(245,128,32,0.3)] transition-all duration-300">
+                  <Icon
+                    className="text-gray-400 group-hover:text-[#f58020] transition-colors duration-300"
+                    size={28}
+                  />
+                </div>
+
+                <h4 className="text-xl font-bold text-white mb-3 group-hover:text-[#f58020] transition-colors">
+                  {item.title}
+                </h4>
+
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 0.2 }}
+                  transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                  className="absolute inset-0 bg-[#f58020] mix-blend-overlay pointer-events-none"
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </motion.div>
 

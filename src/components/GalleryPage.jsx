@@ -1,4 +1,3 @@
-// src/components/GalleryPage.jsx
 import { useState, useRef, useEffect } from "react";
 import {
   motion,
@@ -13,10 +12,12 @@ import {
   ChevronLeft,
   ChevronRight,
   Sparkles,
+  Home,          // Added for breadcrumb
 } from "lucide-react";
 import assests from "../assets/assests";
 
-export default function GalleryPage() {
+// ⭐ Added { onNav } prop for breadcrumb navigation
+export default function GalleryPage({ onNav }) {
   const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -24,7 +25,7 @@ export default function GalleryPage() {
 
   /* Banner Parallax Animation */
   const { scrollY } = useScroll();
-  const bannerY = useTransform(scrollY, [0, 300], [0, 120]);
+  const bannerY = useTransform(scrollY, [0, 300], [0, 100]); // Adjusted for new banner style
 
   /* Section scroll animation */
   const { scrollYProgress } = useScroll({
@@ -96,84 +97,55 @@ export default function GalleryPage() {
   return (
     <>
       {/* ------------------------------------------------------ */}
-      {/* 🔥 PREMIUM PARALLAX BANNER WITH PARTICLES + TILT TEXT */}
+      {/* 🔥 STANDARD PREMIUM BREADCRUMB BANNER (Updated) */}
       {/* ------------------------------------------------------ */}
-      <section className="relative w-full h-[40vh] sm:h-[50vh] lg:h-[60vh] overflow-hidden">
+      <section className="relative w-full h-[45vh] md:h-[55vh] overflow-hidden flex items-center justify-center">
 
-        {/* Parallax Background */}
-        <motion.div style={{ y: bannerY }} className="absolute inset-0">
-          <img
-            src={assests.bannerImage}
-            alt="Gallery Banner"
-            className="w-full h-full object-cover brightness-[0.7]"
-          />
-        </motion.div>
-
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black"></div>
-
-        {/* ⭐ FLOATING PARTICLES ⭐ */}
-        {[...Array(18)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-[#f58020] rounded-full blur-sm opacity-60"
-            initial={{
-              x: Math.random() * 1400 - 700,
-              y: Math.random() * 400 - 300,
-              scale: Math.random() * 0.8 + 0.4,
-            }}
-            animate={{
-              y: ["0%", "-25%", "0%"],
-              opacity: [0.4, 1, 0.4],
-            }}
-            transition={{
-              duration: Math.random() * 6 + 4,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-
-        {/* ⭐ TILT-IN CINEMATIC TEXT ⭐ */}
-        <motion.div
-          initial={{ opacity: 0, rotateX: 45, y: 50 }}
-          animate={{
-            opacity: 1,
-            rotateX: 0,
-            y: 0,
-          }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 flex items-center justify-center text-center px-4"
-        >
-          <div className="drop-shadow-xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.9 }}
-              className="text-white text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-wide"
-            >
-              Explore Our Creative Signage Gallery
-            </motion.h1>
-
-            {/* Gradient Underline */}
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "150px" }}
-              transition={{ delay: 0.9, duration: 1 }}
-              className="h-[4px] mx-auto mt-4 rounded-full bg-gradient-to-r from-[#f58020] to-[#d4550d]"
+        {/* Banner Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div style={{ y: bannerY }} className="absolute inset-0">
+            <img
+              src={assests.bannerImage}
+              alt="Gallery Banner"
+              className="w-full h-full object-cover brightness-[0.5]"
             />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black"></div>
+        </div>
 
-            {/* Sub-caption */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1, duration: 1 }}
-              className="text-gray-200 mt-5 text-base sm:text-lg tracking-wide"
+        {/* Banner Content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4">
+
+          {/* Interactive Breadcrumb Pill */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-2 rounded-full"
+          >
+            <button 
+              onClick={() => onNav("home")} 
+              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
             >
-              A showcase of our finest indoor & outdoor branding projects.
-            </motion.p>
-          </div>
-        </motion.div>
+              <Home size={14} className="group-hover:text-[#f58020] transition-colors" />
+              <span className="text-sm font-medium uppercase tracking-wider">Home</span>
+            </button>
+
+            <ChevronRight size={14} className="text-gray-500" />
+
+            <span className="text-[#f58020] text-sm font-bold uppercase tracking-wider">
+              Gallery
+            </span>
+          </motion.div>
+          
+          {/* Orange Accent Line */}
+          <motion.div 
+             initial={{ width: 0 }}
+             animate={{ width: "80px" }}
+             transition={{ delay: 0.5, duration: 0.8 }}
+             className="h-1 bg-[#f58020] mt-8 rounded-full"
+          />
+        </div>
       </section>
 
       {/* ------------------------------------------------------ */}
@@ -182,7 +154,7 @@ export default function GalleryPage() {
       <motion.section
         ref={sectionRef}
         style={{ opacity, y }}
-        className="relative w-full bg-black text-gray-300 py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative w-full bg-black text-gray-300 py-16 md:py-20 lg:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
       >
         {/* Background Grid */}
         <div className="absolute inset-0 opacity-[0.02]">
@@ -217,7 +189,7 @@ export default function GalleryPage() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#f58020]/10 border border-[#f58020]/30 rounded-full text-[#f58020] text-xs font-semibold backdrop-blur-sm">
               <Sparkles className="w-3 h-3" />
-              Our Work Showcase
+              Project Showcase
             </span>
           </motion.div>
 
@@ -227,9 +199,9 @@ export default function GalleryPage() {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-white text-center text-4xl sm:text-5xl lg:text-6xl font-black"
           >
-            Project{" "}
+            Selected{" "}
             <span className="bg-gradient-to-r from-[#f58020] via-[#ff9a33] to-[#d4550d] bg-clip-text text-transparent">
-              Gallery
+              Projects
             </span>
           </motion.h2>
 
@@ -383,4 +355,4 @@ export default function GalleryPage() {
       </motion.section>
     </>
   );
-}
+};

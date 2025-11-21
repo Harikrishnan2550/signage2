@@ -12,7 +12,8 @@ import ContactUsPage from "./components/ContactUsPage";
 import GalleryPage from "./components/GalleryPage";
 import ServicesPage from "./components/ServicesPage";
 
-import WhatsAppButton from "./components/WhatsAppButton"; // <-- ⭐ ADD THIS
+import WhatsAppButton from "./components/WhatsAppButton"; 
+import MachinerySection from "./components/MachinerySection";
 
 function App() {
   const [route, setRoute] = useState("home");
@@ -27,7 +28,8 @@ function App() {
           <Home onNav={setRoute} />
           <About />
           <Services onNav={setRoute}/>
-          <Gallery />
+          <Gallery onNav={setRoute}/>
+          <MachinerySection/>
           <ConnectUs />
           <Footer />
         </>
@@ -36,7 +38,8 @@ function App() {
       {/* ABOUT PAGE */}
       {route === "about" && (
         <>
-          <AboutUsPage />
+          {/* ⭐ FIX: Pass onNav={setRoute} so the breadcrumb works */}
+          <AboutUsPage onNav={setRoute} />
           <Footer />
         </>
       )}
@@ -44,7 +47,7 @@ function App() {
       {/* SERVICES PAGE */}
       {route === "services" && (
         <>
-          <ServicesPage/>
+          <ServicesPage onNav={setRoute}/>
           <Footer />
         </>
       )}
@@ -52,7 +55,7 @@ function App() {
       {/* GALLERY PAGE */}
       {route === "gallery" && (
         <>
-          <GalleryPage />
+          <GalleryPage onNav={setRoute}/>
           <Footer />
         </>
       )}

@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { X, ZoomIn, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { X, ZoomIn, ChevronLeft, ChevronRight, Sparkles, ArrowRight } from "lucide-react"; // Added ArrowRight
+import assests from "../assets/assests"; 
 
-export default function Gallery() {
+// ⭐ Accept onNav as a prop here
+export default function Gallery({ onNav }) {
   const [selected, setSelected] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const sectionRef = useRef(null);
@@ -16,14 +18,14 @@ export default function Gallery() {
   const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
 
   const images = [
-    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
-    "https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800&q=80",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
+    assests.g9,
+    assests.g10,
+    assests.g11,
+    assests.g12,
+    assests.g13,
+    assests.g14,
+    assests.g15,
+    assests.g16,
   ];
 
   const openLightbox = (img, index) => {
@@ -102,7 +104,6 @@ export default function Gallery() {
             </motion.span>
           </motion.h2>
 
-          {/* Accent underline */}
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -192,6 +193,24 @@ export default function Gallery() {
             </motion.div>
           ))}
         </div>
+
+        {/* ⭐ VIEW MORE BUTTON ⭐ */}
+        <div className="mt-16 flex justify-center relative z-20">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => onNav('gallery')} // Triggers page change
+            className="group relative px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white font-semibold overflow-hidden transition-all duration-300 hover:bg-[#f58020] hover:border-[#f58020] hover:text-black"
+          >
+             <span className="relative z-10 flex items-center gap-2">
+                View All Projects 
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+             </span>
+             {/* Glow effect inside button */}
+             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+          </motion.button>
+        </div>
+
       </div>
 
       {/* LIGHTBOX */}

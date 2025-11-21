@@ -25,7 +25,24 @@ import g22 from '../assets/outdoor/7.jpg'
 import g23 from '../assets/outdoor/8.jpg'
 import g24 from '../assets/outdoor/9.jpg'
 import g25 from '../assets/outdoor/10.jpg'
-
+import laser1 from '../assets/IMAGE3.png'
+import laser2 from '../assets/IMAGE4.png'
+import laser3 from '../assets/IMAGE6.png'
+import cnc1 from '../assets/IMAGE7.png'
+import cnc2 from '../assets/IMAGE8.png'
+import cnc3 from '../assets/IMAGE9.png'
+import printing1 from '../assets/IMAGE1.png'
+import printing2 from '../assets/IMAGE10.png'
+import printing3 from '../assets/IMAGE11.png'
+import craneInstall from '../assets/craneInstall.png'
+import fabricationWorkshop from '../assets/fabricationWorkshop.png'
+import liftInstall from '../assets/liftInstall.png'
+import ropeAccess from '../assets/ropeAccess.png'
+import bikashBabu from '../assets/bikashBabu.png'
+import interiorStore from '../assets/interiorStore.png'
+import glassSign from '../assets/glassSign.png'
+import wayfinding from '../assets/wayfinding.png'
+import laserCut from '../assets/laserCut.png'
 
 
 
@@ -37,6 +54,24 @@ const assests = {
      founder1,
      founder2,
      g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,
+     laser1,
+     laser2,
+     laser3,
+     cnc1,
+     cnc2,
+     cnc3,
+     printing1,
+     printing2,
+     printing3,
+     craneInstall,
+     fabricationWorkshop,
+     liftInstall,
+     ropeAccess,
+     bikashBabu,
+     wayfinding,
+     glassSign,
+     laserCut,
+     interiorStore
 
 }
    

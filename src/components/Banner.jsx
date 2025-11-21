@@ -16,7 +16,7 @@ export default function Banner() {
         <img 
           src={assests.bannerImage}
           alt="Page Banner"
-          className="w-full h-full object-cover brightness-[1.5]"
+          className="w-full h-full object-cover brightness-[4.6]"
         />
       </motion.div>
 

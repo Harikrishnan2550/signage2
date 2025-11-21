@@ -1,9 +1,23 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Check, Award, Users, Clock } from "lucide-react";
+import { 
+  Check, 
+  Award, 
+  Users, 
+  Clock, 
+  Target, 
+  Rocket, 
+  Hammer, 
+  Lightbulb, 
+  Heart, 
+  Leaf,
+  Home,          // Added Home Icon
+  ChevronRight   // Added Chevron Icon
+} from "lucide-react";
 import { useRef } from "react";
 import assests from "../assets/assests";
 
-export default function AboutUsPage() {
+// ⭐ Added { onNav } prop so the Home link works
+export default function AboutUsPage({ onNav }) {
 
   /* ---------------- BANNER ANIMATION ---------------- */
   const { scrollY } = useScroll();
@@ -55,12 +69,35 @@ export default function AboutUsPage() {
     },
   ];
 
+  const whyChooseData = [
+    {
+      title: "Craftsmanship & Quality",
+      desc: "At NEXT LEVEL Signages, we prioritize quality material and expert techniques to ensure durability and excellence in every sign.",
+      icon: Hammer,
+    },
+    {
+      title: "Innovation & Creativity",
+      desc: "We are not just making signages, we are creating visibility. We blend technology with design to make you stand out.",
+      icon: Lightbulb,
+    },
+    {
+      title: "Customer Satisfaction",
+      desc: "We highlight our commitment to meeting client needs with personalized designs & reliable services tailored to you.",
+      icon: Heart,
+    },
+    {
+      title: "Sustainability",
+      desc: "We are committed to eco-friendly practices by using sustainable materials and minimizing wastage during production.",
+      icon: Leaf,
+    },
+  ];
+
   return (
     <>
       {/* ---------------------------------------------------- */}
-      {/* 🔥 PREMIUM BANNER SECTION WITH CAPTION */}
+      {/* 🔥 PREMIUM BANNER SECTION WITH BREADCRUMB */}
       {/* ---------------------------------------------------- */}
-      <section className="relative w-full h-[40vh] sm:h-[50vh] lg:h-[60vh] overflow-hidden">
+      <section className="relative w-full h-[40vh] sm:h-[50vh] lg:h-[60vh] overflow-hidden flex items-center justify-center">
 
         {/* Banner Background */}
         <motion.div
@@ -70,49 +107,61 @@ export default function AboutUsPage() {
           <img
             src={assests.bannerImage}
             alt="Banner"
-            className="w-full h-full object-cover brightness-[0.7]"
+            className="w-full h-full object-cover brightness-[0.5]"
           />
         </motion.div>
 
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black"></div>
 
-        {/* ⭐ PREMIUM CAPTION TEXT ⭐ */}
-        <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 flex items-center justify-center text-center px-4"
-        >
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 1 }}
-              className="text-white text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-wide drop-shadow-xl"
+        {/* ⭐ PREMIUM BREADCRUMB & TITLE ⭐ */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4 mt-10">
+          
+          {/* Main Page Title */}
+
+
+          {/* Glass Breadcrumb Pill */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="inline-flex items-center gap-4 px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full shadow-2xl"
+          >
+            
+            {/* Home Link */}
+            <div 
+              onClick={() => onNav('home')}
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors cursor-pointer group"
             >
-              Crafting Signages That Define Your Brand
-            </motion.h1>
+              <Home size={16} className="group-hover:text-[#f58020] transition-colors" />
+              <span className="text-sm font-bold uppercase tracking-widest">Home</span>
+            </div>
 
-            {/* Underline Animation */}
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "120px" }}
-              transition={{ delay: 1, duration: 1, ease: "easeOut" }}
-              className="h-[4px] bg-gradient-to-r from-[#f58020] to-[#d4550d] mx-auto mt-4 rounded-full shadow-xl"
-            />
+            {/* Separator */}
+            <ChevronRight size={16} className="text-gray-600" />
 
-            {/* Sub caption */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 1 }}
-              className="text-gray-200 mt-5 text-base sm:text-lg tracking-wide"
-            >
-              Premium designs. Superior quality. Professional installation.
-            </motion.p>
-          </div>
-        </motion.div>
+            {/* Active Page with Animated Underline */}
+            <div className="relative flex flex-col items-center">
+              <span className="text-[#f58020] text-sm font-bold uppercase tracking-widest">
+                About
+              </span>
+              {/* The Orange Underline */}
+            
+            </div>
+            
+
+          </motion.div>
+
+           <motion.div 
+                className=" left-0 h-[4px] bg-[#f58020] w-[100px] rounded-full shadow-[0_0_10px_#f58020] mt-5 "
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              />
+
+        </div>
+
+         
 
       </section>
 
@@ -122,7 +171,7 @@ export default function AboutUsPage() {
       <motion.section
         ref={sectionRef}
         style={{ opacity, y }}
-        className="relative w-full bg-black text-gray-300 py-20 md:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative w-full bg-black text-gray-300 py-20 md:py-5 px-4 sm:px-6 lg:px-8 overflow-hidden "
       >
 
         {/* Background Grid */}
@@ -174,6 +223,7 @@ export default function AboutUsPage() {
                 <img
                   src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=80"
                   className="w-full h-[380px] sm:h-[470px] lg:h-[560px] object-cover"
+                  alt="About Us"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
               </motion.div>
@@ -187,7 +237,7 @@ export default function AboutUsPage() {
             transition={{ duration: 0.8 }}
             className="space-y-6 md:space-y-8"
           >
-             <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] leading-snug">
+            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] leading-snug">
               About{" "}
               <motion.span
                 className="inline-block bg-gradient-to-r from-[#f58020] via-[#d4550d] to-[#d4550d] bg-clip-text text-transparent"
@@ -203,10 +253,10 @@ export default function AboutUsPage() {
 
             <p className="text-gray-300 text-lg leading-relaxed">
               We are a Kochi-based premium signage and branding company delivering
-            high-quality, performance-driven solutions for businesses, retail
-            chains, showrooms, corporates, and institutions. From LED boards to
-            3D acrylic letters , we craft signage that enhances brand identity
-            and makes a lasting impression.
+              high-quality, performance-driven solutions for businesses, retail
+              chains, showrooms, corporates, and institutions. From LED boards to
+              3D acrylic letters , we craft signage that enhances brand identity
+              and makes a lasting impression.
             </p>
 
             {/* FEATURES */}
@@ -250,7 +300,9 @@ export default function AboutUsPage() {
 
         </div>
 
-        {/* FOUNDERS SECTION */}
+        {/* ---------------------------------------------------- */}
+        {/* 👥 FOUNDERS SECTION */}
+        {/* ---------------------------------------------------- */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -273,12 +325,12 @@ export default function AboutUsPage() {
                 <div className="absolute -inset-2 bg-gradient-to-br from-[#f58020]/20 to-transparent blur-xl rounded-3xl opacity-0 group-hover:opacity-100 transition"></div>
 
                 <div className="relative bg-gradient-to-br from-[#0d0d0d] to-black border border-white/10 rounded-2xl p-8 shadow-xl hover:border-[#f58020]/50 transition flex flex-col h-full">
-                  
+
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-6 rounded-full border-4 border-[#f58020] overflow-hidden"
                   >
-                    <img src={founder.image} className="w-full h-full object-cover" />
+                    <img src={founder.image} className="w-full h-full object-cover" alt={founder.name} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40"></div>
                   </motion.div>
 
@@ -310,8 +362,100 @@ export default function AboutUsPage() {
           </div>
         </motion.div>
 
+
+        {/* ---------------------------------------------------- */}
+        {/* 🚀 NEW: VISION & MISSION SECTION */}
+        {/* ---------------------------------------------------- */}
+        <div className="max-w-7xl mx-auto mt-32 md:mt-40">
+          <div className="grid lg:grid-cols-2 gap-12">
+            
+            {/* Vision Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-10 rounded-2xl relative overflow-hidden group"
+            >
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#f58020]/10 rounded-full blur-2xl group-hover:bg-[#f58020]/20 transition duration-500"></div>
+              
+              <div className="flex items-center gap-4 mb-6">
+                 <div className="p-3 bg-[#f58020]/20 rounded-lg text-[#f58020]">
+                    <Target size={32} />
+                 </div>
+                 <h3 className="text-3xl font-bold text-white">Our Vision</h3>
+              </div>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                To be the <span className="text-white font-semibold">leading provider of integrated signage solutions</span> within this state of Kerala & soon to other State as well. Setting the industry standard for quality, innovation, and elevate brands through expertly crafted signage that captures attention, enhance visibility.
+              </p>
+            </motion.div>
+
+            {/* Mission Card */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-10 rounded-2xl relative overflow-hidden group"
+            >
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#f58020]/10 rounded-full blur-2xl group-hover:bg-[#f58020]/20 transition duration-500"></div>
+
+              <div className="flex items-center gap-4 mb-6">
+                 <div className="p-3 bg-[#f58020]/20 rounded-lg text-[#f58020]">
+                    <Rocket size={32} />
+                 </div>
+                 <h3 className="text-3xl font-bold text-white">Our Mission</h3>
+              </div>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                To design, manufacture, and install <span className="text-white font-semibold">high-impact, durable, and technologically advanced signages</span> that effectively communicate our clients' brand identity, guide their customers, and drive business growth. Our goal is to redefine visual branding by transforming spaces into experiences.
+              </p>
+            </motion.div>
+
+          </div>
+        </div>
+
+
+        {/* ---------------------------------------------------- */}
+        {/* ⭐ NEW: WHY CHOOSE US SECTION */}
+        {/* ---------------------------------------------------- */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto mt-32 md:mt-40 mb-10"
+        >
+          <h3 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16">
+            Why Choose <span className="text-[#f58020]">NEXT LEVEL</span> Signages?
+          </h3>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {whyChooseData.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group p-6 rounded-xl border border-white/10 bg-[#0a0a0a] hover:bg-[#111] hover:border-[#f58020]/40 transition-all duration-300 flex flex-col"
+                >
+                  <div className="mb-5 inline-block p-4 rounded-full bg-gradient-to-br from-gray-800 to-black border border-white/5 group-hover:border-[#f58020] group-hover:shadow-[0_0_20px_rgba(245,128,32,0.3)] transition-all duration-300">
+                    <Icon className="text-gray-400 group-hover:text-[#f58020] transition-colors duration-300" size={28} />
+                  </div>
+                  
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-[#f58020] transition-colors">
+                    {item.title}
+                  </h4>
+                  
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
         {/* Bottom Fade */}
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black pointer-events-none"></div>
 
       </motion.section>
     </>
