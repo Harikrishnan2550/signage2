@@ -1,4 +1,10 @@
 import { motion } from "framer-motion";
+import { MdShareLocation } from "react-icons/md";
+import { MdPhoneCallback } from "react-icons/md";
+import { IoMailUnreadOutline } from "react-icons/io5";
+
+
+
 
 export default function Footer() {
   return (
@@ -50,9 +56,12 @@ export default function Footer() {
         >
           <h3 className="text-white text-lg font-bold mb-4">Contact</h3>
           <ul className="space-y-4 text-gray-400">
-            <li>📍 Kochi, Kerala</li>
-            <li>📞 +91 98765 43210</li>
-            <li>✉️ info@designphantom.com</li>
+            <li className="flex gap-3"><MdShareLocation className="mt-0 text-[50px]"/> <span className="mt-3"> Near Kinfra Techno Park & Kerala Startup Mission
+Kalamassery
+Cochin  I  Kerala</span>
+</li>
+            <li className="flex gap-3 text-[20px]"><MdPhoneCallback className="mt-1 text-[24px]" /> +91 98765 43210 </li>
+            <li className="flex gap-3 text-[15px]"><IoMailUnreadOutline className="mt-1 text-[20px]"  /> info@designphantom.com</li>
           </ul>
         </motion.div>
 

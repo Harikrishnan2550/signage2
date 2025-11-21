@@ -2,6 +2,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Toaster, toast } from "sonner";
+import { IoLocationOutline } from "react-icons/io5";
+import { IoCallOutline } from "react-icons/io5";
+import { TbTargetArrow } from "react-icons/tb";
+import { HiOutlineMailOpen } from "react-icons/hi";
+import { TiMessages } from "react-icons/ti";
+
+
+
+
 
 export default function ConnectUs() {
   const sectionRef = useRef(null);
@@ -140,7 +149,7 @@ export default function ConnectUs() {
 
             <div className="relative bg-gradient-to-br from-[#0d0d0d] to-black p-8 rounded-2xl border border-[#f58020]/20 backdrop-blur-sm">
               <h3 className="text-white text-2xl font-bold mb-8 flex items-center gap-3">
-                <span className="text-[#f58020]">✉️</span>
+                <span className="text-[#f58020]"><TiMessages /></span>
                 Send a Message
               </h3>
 
@@ -234,24 +243,25 @@ export default function ConnectUs() {
               className="relative bg-gradient-to-br from-[#0d0d0d] to-black p-8 rounded-2xl border border-[#f58020]/20 shadow-2xl"
             >
               <h3 className="text-white text-2xl font-bold mb-8 flex items-center gap-3 relative z-10">
-                <span className="text-[#f58020]">🎯</span>
+                <span className="text-[#f58020]"><TbTargetArrow /></span>
                 Reach Us
               </h3>
 
               <div className="space-y-8 relative z-10">
                 <div className="flex gap-4 items-start cursor-pointer">
-                  <span className="text-[#f58020] text-2xl">📍</span>
-                  <p className="text-gray-400"> Kochi, Kerala</p>
+                  <span className="text-[#f58020] text-2xl"><IoLocationOutline /></span>
+                  <p className="text-gray-400"> Near Kinfra Techno Park & Kerala Startup Mission,<br></br>Kalamassery , Cochin  I  Kerala
+</p>
                 </div>
 
                 <div className="flex gap-4 items-center cursor-pointer">
-                  <span className="text-[#f58020] text-2xl">📞</span>
-                  <p className="text-gray-400">+91 98765 43210</p>
+                  <span className="text-[#f58020] text-2xl"><IoCallOutline /></span>
+                  <p className="text-gray-400">+91 6238 139 465 | +91 9188 825 935</p>
                 </div>
 
                 <div className="flex gap-4 items-center cursor-pointer">
-                  <span className="text-[#f58020] text-2xl">✉️</span>
-                  <p className="text-gray-400">hari@gmail.com</p>
+                  <span className="text-[#f58020] text-2xl"><HiOutlineMailOpen /></span>
+                  <p className="text-gray-400">info@nextlevelsignages.com</p>
                 </div>
 
                 <div className="w-full h-56 bg-gradient-to-br from-black to-[#0d0d0d] border border-[#f58020]/30 rounded-xl flex items-center justify-center text-gray-500 cursor-pointer">

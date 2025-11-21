@@ -37,14 +37,22 @@ export default function GalleryPage() {
 
   /* ---------- Gallery items ---------- */
   const images = [
-    { src: assests.g3, category: "indoor" },
-    { src: assests.g5, category: "outdoor" },
-    { src: assests.g1, category: "indoor" },
-    { src: assests.g6, category: "outdoor" },
-    { src: assests.g2, category: "indoor" },
-    { src: assests.g7, category: "outdoor" },
-    { src: assests.g4, category: "indoor" },
-    { src: assests.g8, category: "outdoor" },
+    { src: assests.g9, category: "indoor" },
+    { src: assests.g11, category: "indoor" },
+    { src: assests.g12, category: "indoor" },
+    { src: assests.g13, category: "indoor" },
+    { src: assests.g14, category: "indoor" },
+    { src: assests.g15, category: "indoor" },
+    { src: assests.g16, category: "outdoor" },
+    { src: assests.g17, category: "outdoor" },
+    { src: assests.g18, category: "outdoor" },
+    { src: assests.g19, category: "outdoor" },
+    { src: assests.g20, category: "outdoor" },
+    { src: assests.g21, category: "outdoor" },
+    { src: assests.g22, category: "outdoor" },
+    { src: assests.g23, category: "outdoor" },
+    { src: assests.g24, category: "outdoor" },
+    { src: assests.g25, category: "outdoor" }
   ];
 
   const filteredImages =
