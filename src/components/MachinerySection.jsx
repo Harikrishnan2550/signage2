@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Zap, Cpu, Printer, ArrowUpRight, Layers } from "lucide-react";
-// make sure to import your assets correctly
 import assests from "../assets/assests"; 
 
 // --- DATA ---
@@ -61,13 +60,12 @@ export default function MachinerySection() {
     setCurrentIndex((prev) => (prev === 0 ? machineData.length - 1 : prev - 1));
   };
 
-  // ⭐ UPDATED: Auto-scroll set to 2 seconds (2000ms)
+  // Auto-scroll set to 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000); // Changed from 5000 to 2000
+    }, 3000);
 
-    // Cleanup interval on unmount or when user manually changes slide
     return () => clearInterval(interval);
   }, [currentIndex]); 
 
@@ -80,16 +78,15 @@ export default function MachinerySection() {
     exit: (direction) => ({ opacity: 0, x: direction > 0 ? -50 : 50, transition: { duration: 0.3, ease: "easeIn" } }),
   };
 
-  // Reusable styles for the glass containers
+  // Reusable styles
   const glassContainerStyle = "relative group overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md transition-all duration-500 hover:border-[#f58020]/40 hover:shadow-[0_0_30px_-5px_rgba(245,128,32,0.2)]";
   
-  // Reusable styles for the PNG images to make them glow on hover
-  const pngImageStyle = "absolute inset-0 w-full h-full object-contain p-4 md:p-6 z-10 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_10px_20px_rgba(245,128,32,0.25)]";
+  // Removed padding completely on mobile (p-0) so the image touches the edges if needed
+  const pngImageStyle = "absolute inset-0 w-full h-full object-contain p-0 md:p-6 z-10 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_10px_20px_rgba(245,128,32,0.25)]";
 
   return (
     <section className="relative w-full bg-[#050505] py-16 md:py-24 lg:py-32 overflow-hidden font-sans">
       
-      {/* Ambient Background Glows */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#f58020]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -126,7 +123,7 @@ export default function MachinerySection() {
         </div>
 
         {/* CONTENT AREA */}
-        <div className="relative min-h-[750px] md:min-h-[600px] lg:min-h-[500px]">
+        <div className="relative min-h-[1200px] md:min-h-[600px] lg:min-h-[500px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -165,13 +162,14 @@ export default function MachinerySection() {
                 </div>
               </div>
 
-              {/* RIGHT: PREMIUM GLASS BENTO GRID */}
-              <div className="lg:col-span-7 w-full h-[350px] md:h-[450px] lg:h-[500px] order-2">
-                <div className="grid grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-3 md:gap-4 h-full w-full">
+              {/* RIGHT: IMAGE STACK (Mobile) / BENTO GRID (Desktop) */}
+              <div className="lg:col-span-7 w-full order-2">
+                
+                {/* ⭐ FIX: Changed 'h-full' to 'md:h-[500px]' to force height on desktop */}
+                <div className="flex flex-col gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-2 md:gap-4 w-full md:h-[500px]">
                   
                   {/* MAIN IMAGE (Large) */}
-                  <div className={`col-span-2 lg:col-span-2 row-span-1 lg:row-span-2 ${glassContainerStyle}`}>
-                      {/* Internal Spotlight Gradient */}
+                  <div className={`w-full h-[350px] md:h-full md:col-span-2 lg:col-span-2 md:row-span-2 ${glassContainerStyle}`}>
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)] z-0" />
                       
                       <motion.img 
@@ -180,15 +178,14 @@ export default function MachinerySection() {
                         className={pngImageStyle}
                       />
 
-                      {/* Badge */}
                       <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 flex items-center gap-2 px-2 py-1 md:px-3 md:py-1.5 bg-[#050505]/80 backdrop-blur-md border border-white/10 rounded-lg z-20">
                         <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#f58020] animate-pulse shadow-[0_0_10px_#f58020]" />
                         <span className="text-[10px] md:text-xs font-bold text-white uppercase tracking-wider">Main Unit</span>
                       </div>
                   </div>
 
-                  {/* SUB IMAGE 1 (Top Right) */}
-                  <div className={`col-span-1 row-span-1 ${glassContainerStyle}`}>
+                  {/* SUB IMAGE 1 */}
+                  <div className={`w-full h-[280px] md:h-full md:col-span-1 md:row-span-1 ${glassContainerStyle}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)] z-0" />
                     <img 
                       src={current.images.sub1} 
@@ -197,8 +194,8 @@ export default function MachinerySection() {
                     />
                   </div>
 
-                  {/* SUB IMAGE 2 (Bottom Right) */}
-                  <div className={`col-span-1 row-span-1 ${glassContainerStyle}`}>
+                  {/* SUB IMAGE 2 */}
+                  <div className={`w-full h-[280px] md:h-full md:col-span-1 md:row-span-1 ${glassContainerStyle}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)] z-0" />
                       <img 
                       src={current.images.sub2} 

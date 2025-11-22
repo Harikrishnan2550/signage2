@@ -117,9 +117,6 @@ export default function AboutUsPage({ onNav }) {
         {/* ⭐ PREMIUM BREADCRUMB & TITLE ⭐ */}
         <div className="relative z-10 flex flex-col items-center text-center px-4 mt-10">
           
-          {/* Main Page Title */}
-
-
           {/* Glass Breadcrumb Pill */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -145,11 +142,7 @@ export default function AboutUsPage({ onNav }) {
               <span className="text-[#f58020] text-sm font-bold uppercase tracking-widest">
                 About
               </span>
-              {/* The Orange Underline */}
-            
             </div>
-            
-
           </motion.div>
 
            <motion.div 
@@ -160,9 +153,6 @@ export default function AboutUsPage({ onNav }) {
               />
 
         </div>
-
-         
-
       </section>
 
       {/* ---------------------------------------------------- */}
@@ -414,7 +404,7 @@ export default function AboutUsPage({ onNav }) {
 
 
         {/* ---------------------------------------------------- */}
-        {/* ⭐ NEW: WHY CHOOSE US SECTION */}
+        {/* ⭐ NEW: WHY CHOOSE US SECTION WITH HOVER EFFECT */}
         {/* ---------------------------------------------------- */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
@@ -435,19 +425,28 @@ export default function AboutUsPage({ onNav }) {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="group p-6 rounded-xl border border-white/10 bg-[#0a0a0a] hover:bg-[#111] hover:border-[#f58020]/40 transition-all duration-300 flex flex-col"
+                  // ⭐ UPDATED: Hover Effect
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  className="group p-6 rounded-xl border border-white/10 bg-[#0a0a0a] hover:bg-[#111] hover:border-[#f58020]/40 transition-all duration-300 flex flex-col relative overflow-hidden"
                 >
-                  <div className="mb-5 inline-block p-4 rounded-full bg-gradient-to-br from-gray-800 to-black border border-white/5 group-hover:border-[#f58020] group-hover:shadow-[0_0_20px_rgba(245,128,32,0.3)] transition-all duration-300">
+                  <div className="mb-5 inline-block p-4 rounded-full bg-gradient-to-br from-gray-800 to-black border border-white/5 group-hover:border-[#f58020] group-hover:shadow-[0_0_20px_rgba(245,128,32,0.3)] transition-all duration-300 relative z-10">
                     <Icon className="text-gray-400 group-hover:text-[#f58020] transition-colors duration-300" size={28} />
                   </div>
                   
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-[#f58020] transition-colors">
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-[#f58020] transition-colors relative z-10">
                     {item.title}
                   </h4>
                   
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <p className="text-gray-400 text-sm leading-relaxed relative z-10">
                     {item.desc}
                   </p>
+
+                  {/* Subtle Glow Overlay */}
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.05 }}
+                    className="absolute inset-0 bg-[#f58020] pointer-events-none"
+                  />
                 </motion.div>
               );
             })}

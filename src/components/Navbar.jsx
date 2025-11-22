@@ -102,8 +102,6 @@ export default function Navbar({ onNav, route }) {
           {/* ================= DESKTOP NAV ================= */}
           <div className="hidden md:flex items-center gap-4 relative">
 
-            {/* ❌ REMOVED the wrong outer highlight here */}
-
             {navItems.map((item, i) => {
               const isActive = route === item;
 
@@ -116,7 +114,7 @@ export default function Navbar({ onNav, route }) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  {/* ACTIVE GLOWING BORDER (correct one) */}
+                  {/* ACTIVE GLOWING BORDER */}
                   {isActive && (
                     <motion.div
                       layoutId="navBorderBox"
@@ -162,17 +160,21 @@ export default function Navbar({ onNav, route }) {
           </motion.button>
         </div>
 
-        {/* MOBILE DRAWER */}
+        {/* ====================================================== */}
+        {/* ⭐ MOBILE DRAWER (FIXED) */}
+        {/* ====================================================== */}
         {open && (
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
+            // ⭐ CHANGED: Removed bottom-[380px], Added h-auto and pb-10
+            // This ensures it wraps the content perfectly without crashing on small screens
             className="
-              fixed right-0 top-[72px] bottom-[380px]
+              fixed right-0 top-[72px] h-auto
               w-[280px] sm:w-[320px]
               bg-black/60 backdrop-blur-2xl
-              border-l border-white/20 rounded-xl
-              p-8 z-[1500]
+              border-l border-b border-white/20 rounded-bl-2xl
+              p-8 pb-10 z-[1500]
               flex flex-col items-center gap-5
             "
           >
@@ -183,7 +185,7 @@ export default function Navbar({ onNav, route }) {
                   onNav(item);
                   setOpen(false);
                 }}
-                className="text-gray-200 text-lg py-3 w-full text-center"
+                className="text-gray-200 text-lg py-3 w-full text-center hover:text-[#f58020] transition-colors"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08 }}
@@ -198,7 +200,7 @@ export default function Navbar({ onNav, route }) {
                 setShowModal(true);
                 setOpen(false);
               }}
-              className="w-full py-3 bg-gradient-to-r from-[#f58020] to-red-700 rounded-lg text-white font-semibold"
+              className="w-full py-3 bg-gradient-to-r from-[#f58020] to-red-700 rounded-lg text-white font-semibold mt-2"
             >
               Connect →
             </motion.button>
