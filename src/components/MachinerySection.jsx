@@ -64,7 +64,7 @@ export default function MachinerySection() {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [currentIndex]); 
@@ -81,8 +81,9 @@ export default function MachinerySection() {
   // Reusable styles
   const glassContainerStyle = "relative group overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md transition-all duration-500 hover:border-[#f58020]/40 hover:shadow-[0_0_30px_-5px_rgba(245,128,32,0.2)]";
   
-  // Removed padding completely on mobile (p-0) so the image touches the edges if needed
-  const pngImageStyle = "absolute inset-0 w-full h-full object-contain p-0 md:p-6 z-10 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_10px_20px_rgba(245,128,32,0.25)]";
+  // ⭐ UPDATED STYLE: object-cover + p-0
+  // This forces the image to fill the container completely (cropping if necessary)
+  const pngImageStyle = "absolute inset-0 w-full h-full object-cover p-0 z-10 transition-all duration-700 group-hover:scale-110";
 
   return (
     <section className="relative w-full bg-[#050505] py-16 md:py-24 lg:py-32 overflow-hidden font-sans">
@@ -123,6 +124,7 @@ export default function MachinerySection() {
         </div>
 
         {/* CONTENT AREA */}
+        {/* Adjusted min-height to accommodate stacking on mobile */}
         <div className="relative min-h-[1200px] md:min-h-[600px] lg:min-h-[500px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -162,14 +164,18 @@ export default function MachinerySection() {
                 </div>
               </div>
 
-              {/* RIGHT: IMAGE STACK (Mobile) / BENTO GRID (Desktop) */}
+              {/* RIGHT: UNIFIED BENTO GRID (Responsive) */}
               <div className="lg:col-span-7 w-full order-2">
                 
-                {/* ⭐ FIX: Changed 'h-full' to 'md:h-[500px]' to force height on desktop */}
-                <div className="flex flex-col gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-2 md:gap-4 w-full md:h-[500px]">
+                {/* ⭐ Unified Grid Layout 
+                   - Mobile: 2 columns wide total.
+                   - Main image takes 2 cols (full width).
+                   - Sub images take 1 col each (half width).
+                */}
+                <div className="grid grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-3 md:gap-4 w-full h-auto md:h-[500px]">
                   
                   {/* MAIN IMAGE (Large) */}
-                  <div className={`w-full h-[350px] md:h-full md:col-span-2 lg:col-span-2 md:row-span-2 ${glassContainerStyle}`}>
+                  <div className={`col-span-2 lg:col-span-2 lg:row-span-2 h-[280px] md:h-full ${glassContainerStyle}`}>
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)] z-0" />
                       
                       <motion.img 
@@ -185,7 +191,7 @@ export default function MachinerySection() {
                   </div>
 
                   {/* SUB IMAGE 1 */}
-                  <div className={`w-full h-[280px] md:h-full md:col-span-1 md:row-span-1 ${glassContainerStyle}`}>
+                  <div className={`col-span-1 lg:col-span-1 lg:row-span-1 h-[160px] md:h-full ${glassContainerStyle}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)] z-0" />
                     <img 
                       src={current.images.sub1} 
@@ -195,7 +201,7 @@ export default function MachinerySection() {
                   </div>
 
                   {/* SUB IMAGE 2 */}
-                  <div className={`w-full h-[280px] md:h-full md:col-span-1 md:row-span-1 ${glassContainerStyle}`}>
+                  <div className={`col-span-1 lg:col-span-1 lg:row-span-1 h-[160px] md:h-full ${glassContainerStyle}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)] z-0" />
                       <img 
                       src={current.images.sub2} 

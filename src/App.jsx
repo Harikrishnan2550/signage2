@@ -55,7 +55,7 @@ function App() {
       {/* GALLERY PAGE */}
       {route === "gallery" && (
         <>
-          <GalleryPage onNav={setRoute}/>
+          <GalleryPage />
           <Footer />
         </>
       )}
@@ -63,7 +63,7 @@ function App() {
       {/* CONTACT PAGE */}
       {route === "contact" && (
         <>
-          <ContactUsPage />
+          <ContactUsPage onNav={setRoute}/>
           <Footer />
         </>
       )}
