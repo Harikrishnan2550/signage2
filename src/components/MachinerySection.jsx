@@ -125,7 +125,7 @@ export default function MachinerySection() {
 
         {/* CONTENT AREA */}
         {/* Adjusted min-height to accommodate stacking on mobile */}
-        <div className="relative min-h-[1200px] md:min-h-[600px] lg:min-h-[500px]">
+        <div className="relative h-auto md:min-h-[600px] lg:min-h-[500px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}

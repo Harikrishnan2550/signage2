@@ -115,7 +115,7 @@ export default function Footer() {
         transition={{ duration: 0.6 }}
         className="text-center text-gray-500 text-sm relative z-10"
       >
-        © {new Date().getFullYear()} NEXT LEVEL Signages . All Rights Reserved | Developed by Winshine infoech.
+        © {new Date().getFullYear()} NEXT LEVEL Signages . All Rights Reserved | Developed by Winshine infotech.
       </motion.div>
 
       {/* Bottom Fade */}
