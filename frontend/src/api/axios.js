@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // change here later when backend goes live
+  // We keep '/api' at the end because your server.js uses app.use("/api/contact"...)
+  baseURL: "https://api.nextlevelsignages.com/api", 
   headers: {
     "Content-Type": "application/json",
   },
