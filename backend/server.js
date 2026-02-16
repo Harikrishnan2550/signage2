@@ -6,7 +6,21 @@ import contactRoute from "./routes/contact.js";
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://nextlevelsignages.com",
+      "https://www.nextlevelsignages.com",
+    ],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
+// 🔥 THIS LINE FIXES PREFLIGHT
+app.options("*", cors());
+
 app.use(express.json());
 
 app.use("/api/contact", contactRoute);

@@ -1,7 +1,5 @@
 import express from "express";
 import nodemailer from "nodemailer";
-import dotenv from "dotenv";
-dotenv.config();
 
 const router = express.Router();
 
@@ -9,19 +7,30 @@ router.post("/send-email", async (req, res) => {
   try {
     const { name, email, phone, service, message } = req.body;
 
+    // 🔍 DEBUG: confirm env values are loaded
+    console.log("SMTP HOST:", process.env.MAIL_HOST);
+    console.log("SMTP PORT:", process.env.MAIL_PORT);
+    console.log("SMTP USER:", process.env.MAIL_USER);
+    console.log("SMTP PASS EXISTS:", !!process.env.MAIL_PASS);
+
     const transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      port: process.env.MAIL_PORT,
-      secure: process.env.MAIL_PORT == 465,
+      host: "smtp-relay.brevo.com", // hardcoded to avoid env issues
+      port: 587,
+      secure: false,
       auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
+        user: process.env.MAIL_USER,  // MUST be exactly this
+        pass: process.env.MAIL_PASS, // xsmtpsib-...
       },
     });
 
+    // 🔍 Verify SMTP login
+    await transporter.verify();
+    console.log("✅ Brevo SMTP connected");
+
     await transporter.sendMail({
-      from: `"Website Contact" <${process.env.MAIL_USER}>`,
-      to: process.env.MAIL_USER,
+      from: "Next Level Signages <no-reply@nextlevelsignages.com>",
+      to: "info@nextlevelsignages.com",
+      replyTo: email,
       subject: `${name} Has Requested a Project Discussion`,
       html: `
         <h2>New Business Enquiry</h2>
@@ -35,8 +44,11 @@ router.post("/send-email", async (req, res) => {
 
     return res.json({ success: true });
   } catch (error) {
-    console.log("Email Error:", error);
-    return res.status(500).json({ success: false });
+    console.error("❌ Brevo Email Error:", error);
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 });
 
